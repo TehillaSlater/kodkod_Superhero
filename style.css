@@ -369,3 +369,9 @@ body {
         transform: rotate(-360deg);
     }
 }
+#greenGoblin, #docOckTentacle, #spiderSense, .goblin-bomb {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
