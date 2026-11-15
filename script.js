@@ -25,7 +25,7 @@ let runFrame = 1;
 // פיזיקה של ספיידרמן וקור הנדנוד
 let spideyBottom = 35;
 let velocityY = 0;
-const gravity = 0.72;
+const gravity = 0.75;
 let isJumping = false;
 let isDucking = false;
 let swingAnchorX = 240;
@@ -139,7 +139,7 @@ function shootWeb() {
             webAmmo++;
             ammoCountElement.textContent = webAmmo;
         }
-    }, 2200);
+    }, 1000);
 }
 
 // שליטה במקלדת
@@ -148,13 +148,15 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
         if (isGameOver) {
             restartGame();
-        } else if (!isJumping && !isDucking) {
+              } else if (!isJumping) {
+            isDucking = false;
             isJumping = true;
-            velocityY = 14.2;
+            velocityY = 13.8;
             swingAnchorX = 235;
             updateSpideyPose();
             updateSwingWebLine();
         }
+
     } else if (event.code === "ArrowDown") {
         event.preventDefault();
         if (!isGameOver) {
@@ -230,9 +232,10 @@ function spawnObstacle() {
 
 // מתקפה מיוחדת 1: הזרוע של דוק אוק
 function triggerDocOckAttack() {
+     return;
     if (isSpecialAttackActive()) return;
     tentacleState = "warning";
-    tentacleX = 835;
+    tentacleX = 1500;
     docOckTentacle.style.left = tentacleX + "px";
 
     spiderSense.textContent = "⚡ SPIDER-SENSE! DOC OCK ATTACKING - DUCK (⬇️)! ⚡";
@@ -243,14 +246,15 @@ function triggerDocOckAttack() {
     warningTimeoutId = setTimeout(() => {
         if (isGameOver) return;
         tentacleState = "striking";
-    }, 750);
+    }, 1800);
 }
 
 // מתקפה מיוחדת 2: הגובלין הירוק עובר מלמעלה וזורק 2 פצצות ברצף!
 function triggerGoblinAttack() {
+    return;
     if (isSpecialAttackActive()) return;
     goblinState = "flying";
-    goblinX = 900;
+    goblinX = 1500;
     goblinWave = 0;
     droppedBomb1 = false;
     droppedBomb2 = false;
